@@ -11,7 +11,7 @@ function getXYPosition(index) {
 
 // determine if square should be black
 // if return true then black
-function isBlack(index) {
+function isDark(index) {
   // deconstruct x and y from getXYPosition
   const {x, y} = getXYPosition(index)
   return (x + y) % 2 === 1
@@ -24,7 +24,7 @@ export default function Board({board}) {
       {/* .flat makes 2d array into 1d */}
       {board.flat().map((piece, index) => (
         <div key={index} className='square'>
-          <BoardSquare piece={piece} black={isBlack(index)}/>
+          <BoardSquare piece={piece} dark={isDark(index)}/>
         </div>
       ))}
     </div>
