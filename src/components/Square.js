@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function Square({children, black}) {
+export default function Square({children, dark}) {
 
-  const bgClass = black ? 'square-black' : 'square-white'
+  const bgClass = dark ? 'square-dark' : 'square-white'
   return (
     <div className={`${bgClass} board-square`}>
       {children}

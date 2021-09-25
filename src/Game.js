@@ -6,7 +6,7 @@ const chess = new Chess()
 // BehaviorSubject is an 'observable' with
 // attribute board
 export const gameSubject = new BehaviorSubject({
-  // chess.board() makes arry representation of board
+  // chess.board() makes array representation of board
   // from chess.js
   board: chess.board()
 })
