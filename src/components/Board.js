@@ -20,7 +20,7 @@ function isDark(index) {
 function getPosition(i) {
   const { x, y } = getXYPosition(i)
   const letter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'][x]
-  console.log('letter', letter)
+  // console.log('letter', letter)
   return `${letter}${ y + 1 }`
 }
 
