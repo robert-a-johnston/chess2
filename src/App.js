@@ -2,12 +2,13 @@ import React,{useEffect, useState} from 'react'
 
 import './App.css'
 // listen to observable
-import{gameSubject} from './Game'
+import{gameSubject, initGame } from './Game'
 import Board from './components/Board'
 
 export default function App() {
   const [board, setBoard] = useState([])
   useEffect(() => {
+    initGame()
     const subscribe = gameSubject.subscribe((game) => 
       setBoard(game.board)
       )
@@ -16,7 +17,7 @@ export default function App() {
   return (
     <div className='container'>
       <div className='board-container'>
-      {console.log('board', board)}
+      {/* {console.log('board', board)} */}
         <Board board={board} />
       </div>
     </div>
