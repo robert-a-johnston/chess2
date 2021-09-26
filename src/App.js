@@ -16,6 +16,7 @@ export default function App() {
   return (
     <div className='container'>
       <div className='board-container'>
+      {console.log('board', board)}
         <Board board={board} />
       </div>
     </div>

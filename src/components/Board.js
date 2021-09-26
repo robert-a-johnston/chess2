@@ -17,14 +17,25 @@ function isDark(index) {
   return (x + y) % 2 === 1
 }
 
+function getPosition(i) {
+  const { x, y } = getXYPosition(i)
+  const letter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'][x]
+  console.log('letter', letter)
+  return `${letter}${ y + 1 }`
+}
+
 export default function Board({board}) {
   return (
     <div className='board'>
       {/* maps through array board */}
       {/* .flat makes 2d array into 1d */}
-      {board.flat().map((piece, index) => (
-        <div key={index} className='square'>
-          <BoardSquare piece={piece} dark={isDark(index)}/>
+      {board.flat().map((piece, i) => (
+        <div key={i} className='square'>
+          <BoardSquare 
+            piece={piece} 
+            dark={isDark(i)} 
+            position={getPosition(i)}
+            />
         </div>
       ))}
     </div>
