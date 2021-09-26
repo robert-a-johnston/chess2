@@ -15,4 +15,10 @@ export const gameSubject = new BehaviorSubject({
 // uses chess.js notation
 export function move(from, to) {
   console.log('from to', from, to)
+  const legalMove = chess.move({ from, to })
+  if(legalMove) {
+    // updates current gameSubject
+    gameSubject.next({board: chess.board()})
+    console.log('board ', chess.board())
+  }
 }
