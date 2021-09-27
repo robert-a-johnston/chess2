@@ -1,8 +1,17 @@
 import React from 'react'
 
-export default function Promote() {
+const promotionPieces = ['r', 'n', 'b', 'q']
+
+export default function Promote({
+  promotion: { from, to, color },
+}) {
   return (
-    <div>
+    <div className='board'>
+      {promotionPieces.map((p, i) => (
+        <div key={i} className='promote-square'>
+          <div className='piece-container'></div>
+        </div>
+      ))}
       promotion
     </div>
   )
