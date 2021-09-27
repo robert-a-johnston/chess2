@@ -1,10 +1,16 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Square from './Square'
 import Piece from './Piece' 
 import { useDrop } from 'react-dnd'
 import {handleMove} from '../Game'
+import {gameSubject} from '../Game'
+import Promote from './Promote'
 
-export default function BoardSquare({ piece, dark, position }) {
+export default function BoardSquare({ 
+    piece, 
+    dark, 
+    position }) {
+  const [promotion, setPromotion] = useState(null)
   const [, drop] = useDrop({
     accept: 'piece',
     drop: (item) => {
@@ -13,10 +19,28 @@ export default function BoardSquare({ piece, dark, position }) {
       handleMove(fromPosition, position)
     },
   })
+  useEffect(() =>{
+    // game deconstructed
+    const subscribe = gameSubject.subscribe(
+      ({pendingPromotion}) => 
+      pendingPromotion && pendingPromotion.to === position 
+          ? setPromotion(pendingPromotion) 
+          : setPromotion(null)
+    )
+    return () => subscribe.unsubscribe()
+  }, [])
   return (
     <div className='board-square' ref={drop}>
       <Square dark={dark}>
-        {piece && <Piece piece={piece} position={position}/>}
+        {/* if promotion */}
+        {promotion ? (
+          // render promotion
+          <Promote />
+          // else  render piece
+          ) : piece ? (
+            <Piece piece={piece} position={position}/>
+            // else just render the square
+          ) : null}
       </Square>
     </div>
   )

@@ -24,16 +24,25 @@ export function handleMove (from, to) {
   // filter creates array of promotion options
   const promotions = chess.moves({verbose: true}).filter(m => m.promotion)
   console.table(promotions)
+  // if move is a promotion option
   if(promotions.some(p => `${p.from}:${p.to}` === `${from}:${to}`)) {
     console.log('pending promotion')
+    // cannot promote right away because you can select different pieces
+    // pendingPromotion allows for selecting piece
+    // pendingPromotion is a object getting color [0]
     const pendingPromotion = {from, to, color: promotions[0].color}
+
     updateGame(pendingPromotion)
   }
+  // puts game on hold so you can choose piece
   const {pendingPromotion} = gameSubject.getValue()
+
+  
   if(!pendingPromotion){
   move(from, to)
   }
 }
+
 // function that performs the move.
 // uses chess.js notation
 export function move(from, to) {
@@ -46,7 +55,8 @@ export function move(from, to) {
   }
 }
 
-// 
+// function that updates game depending on event
+// used in handleMove and move
 function updateGame(pendingPromotion) {
   const newGame = {
     board: chess.board(),
