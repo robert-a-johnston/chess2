@@ -22,6 +22,7 @@ export default function BoardSquare({
   useEffect(() =>{
     // game deconstructed
     const subscribe = gameSubject.subscribe(
+      // logic to describe when piece has a promotion
       ({pendingPromotion}) => 
       pendingPromotion && pendingPromotion.to === position 
           ? setPromotion(pendingPromotion) 
@@ -29,13 +30,14 @@ export default function BoardSquare({
     )
     return () => subscribe.unsubscribe()
   }, [])
+
   return (
     <div className='board-square' ref={drop}>
       <Square dark={dark}>
         {/* if promotion */}
         {promotion ? (
-          // render promotion
-          <Promote />
+          // render promotion component
+          <Promote promotion={promotion}/>
           // else  render piece
           ) : piece ? (
             <Piece piece={piece} position={position}/>
