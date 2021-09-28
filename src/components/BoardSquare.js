@@ -32,7 +32,7 @@ export default function BoardSquare({
           : setPromotion(null)
     )
     return () => subscribe.unsubscribe()
-  }, [])
+  }, )
 
   return (
     <div className='board-square' ref={drop}>
