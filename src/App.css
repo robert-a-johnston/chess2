@@ -31,6 +31,12 @@
     height: 12.5%;
 }
 
+.promote-square {
+    width: 50%;
+    height: 50%;
+
+}
+
 .square-dark {
     background-color: #4f558b;
 }
@@ -42,6 +48,10 @@
 .board-square {
     width: 100%;
     height: 100%;
+}
+
+.cursor-pointer {
+    cursor: pointer;
 }
 
 .piece-container {

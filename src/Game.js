@@ -1,4 +1,5 @@
 import * as Chess from 'chess.js'
+import { throwIfEmpty } from 'rxjs'
 import { BehaviorSubject } from 'rxjs'
 
 // fen notation for chess
@@ -45,9 +46,15 @@ export function handleMove (from, to) {
 
 // function that performs the move.
 // uses chess.js notation
-export function move(from, to) {
+export function move(from, to, promotion) {
+  let tempMove = { from, to }
+
+  if(promotion) {
+    tempMove.promotion = promotion
+  }
+
   // console.log('from to', from, to)
-  const legalMove = chess.move({ from, to })
+  const legalMove = chess.move(tempMove)
   if(legalMove) {
     // updates current gameSubject
     updateGame()
