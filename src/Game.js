@@ -12,7 +12,7 @@ let checkMate = 'rnb1kbnr/pppp1ppp/8/4p3/5PPq/8/PPPPP2P/RNBQKBNR w KQkq - 1 3'
 let insufficientMaterial = 'k7/8/n7/8/8/8/8/7K b - - 0 1'
 
 // initialize new chess game
-const chess = new Chess(staleMate)
+const chess = new Chess()
 // BehaviorSubject is an 'observable' with
 // attribute board
 export const gameSubject = new BehaviorSubject({
