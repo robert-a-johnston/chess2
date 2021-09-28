@@ -1,11 +1,12 @@
-import React,{useEffect, useState} from 'react'
-
+import React,{ useEffect, useState } from 'react'
 import './App.css'
+
 // listen to observable
-import{gameSubject, initGame } from './Game'
+import{ gameSubject, initGame } from './Game'
 import Board from './components/Board'
 
 export default function App() {
+  // sets state for board
   const [board, setBoard] = useState([])
   useEffect(() => {
     initGame()
