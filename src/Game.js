@@ -6,13 +6,13 @@ import { BehaviorSubject } from 'rxjs'
 // related to DOM position when promote pawn 
 // insert these variables into initialize new chess game to test
 // condition of each.
-let promotion ='rnb2bnr/pppPkppp/8/4p3/7q/8/PPPP1PPP/RNBQKBNR w KQ - 1 5'
-let staleMate = '4k3/4P3/4K3/8/8/8/8/8 b - - 0 78'
-let checkMate = 'rnb1kbnr/pppp1ppp/8/4p3/5PPq/8/PPPPP2P/RNBQKBNR w KQkq - 1 3'
-let insufficientMaterial = 'k7/8/n7/8/8/8/8/7K b - - 0 1'
+// let promotion ='rnb2bnr/pppPkppp/8/4p3/7q/8/PPPP1PPP/RNBQKBNR w KQ - 1 5'
+// let staleMate = '4k3/4P3/4K3/8/8/8/8/8 b - - 0 78'
+// let checkMate = 'rnb1kbnr/pppp1ppp/8/4p3/5PPq/8/PPPPP2P/RNBQKBNR w KQkq - 1 3'
+// let insufficientMaterial = 'k7/8/n7/8/8/8/8/7K b - - 0 1'
 
 // initialize new chess game
-const chess = new Chess(staleMate)
+const chess = new Chess()
 // BehaviorSubject is an 'observable' with
 // attribute board
 export const gameSubject = new BehaviorSubject({
