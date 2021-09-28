@@ -1,4 +1,5 @@
 import React from 'react'
+
 import BoardSquare from './BoardSquare'
 
 // determine coordinates
