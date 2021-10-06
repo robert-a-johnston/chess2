@@ -22,10 +22,12 @@ export const gameSubject = new BehaviorSubject({
   board: chess.board()
 })
 
+// start game on load of page
 export function initGame() {
   updateGame()
 }
 
+// reset game using button
 export function resetGame() {
   chess.reset()
   updateGame()
@@ -49,7 +51,7 @@ export function handleMove (from, to) {
   }
   // puts game on hold so you can choose piece
   const {pendingPromotion} = gameSubject.getValue()
- 
+ // move if no promotion is needed
   if(!pendingPromotion){
   move(from, to)
   }
@@ -77,7 +79,7 @@ export function move(from, to, promotion) {
 // used in handleMove and move
 function updateGame(pendingPromotion) {
   const isGameOver = chess.game_over()
-
+  // creates new game object
   const newGame = {
     board: chess.board(),
     pendingPromotion,
