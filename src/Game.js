@@ -1,5 +1,6 @@
+// File that handles game logic
 import * as Chess from 'chess.js'
-import { throwIfEmpty } from 'rxjs'
+// import { throwIfEmpty } from 'rxjs'
 import { BehaviorSubject } from 'rxjs'
 
 // fen notation for chess
@@ -35,7 +36,7 @@ export function handleMove (from, to) {
   // from chess.js chess.moves
   // filter creates array of promotion options
   const promotions = chess.moves({verbose: true}).filter(m => m.promotion)
-  console.table(promotions)
+  console.table('promotions', promotions)
   // if move is a promotion option
   if(promotions.some(p => `${p.from}:${p.to}` === `${from}:${to}`)) {
     console.log('pending promotion')
@@ -48,8 +49,7 @@ export function handleMove (from, to) {
   }
   // puts game on hold so you can choose piece
   const {pendingPromotion} = gameSubject.getValue()
-
-  
+ 
   if(!pendingPromotion){
   move(from, to)
   }
@@ -88,11 +88,13 @@ function updateGame(pendingPromotion) {
   gameSubject.next(newGame)
 }
 
-// function that determines if result is draw and reason for draw
+// function that determines if result
 function getGameResult() {
+  // check for checkmate and return winner
   if(chess.in_checkmate()){
     const winner = chess.turn() === "w" ? 'DARK' : 'LIGHT'
     return `CHECKMATE - WINNER - ${winner}`
+    // if draw return reason for draw
   } else if(chess.in_draw()) {
     let reason = '50 - MOVES - RULE'
     if (chess.in_stalemate()) {
@@ -103,7 +105,7 @@ function getGameResult() {
       reason = 'INSUFFICIENT MATERIAL'
     }
     return `DRAW - ${reason}`
-
+    // in case of some strange draw
   } else {
     return `UNKNOWN REASON`
   }

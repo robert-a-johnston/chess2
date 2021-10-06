@@ -13,8 +13,11 @@ export default function App() {
 
   useEffect(() => {
     initGame()
+    console.log('gameSubject', gameSubject)
     const subscribe = gameSubject.subscribe((game) => {
+      console.log('gameBoard bS', game.board)
       setBoard(game.board)
+      console.log('game ', game.board)
       setIsGameOver(game.isGameOver)
       setResult(game.result)
     })
